@@ -56,9 +56,9 @@ def merge_vocab(voc1, voc2):
 def get_vocab(docs):
     pass
 
-def preprocess_data(data, label=None, padding_word='0'):
+def preprocess_data(data, vocab, label=None, padding_word=0):
     """
-    sort docs with their lengths and pad each sentence with '0'
+    sort docs with their lengths and pad each sentence with 0
     """
     if label is None:
         label = [-1] * len(data)
@@ -78,6 +78,7 @@ def preprocess_data(data, label=None, padding_word='0'):
         indexes = sorted_index[doc_len]
         pad_num = max_len - doc_len
         for index in indexes:
+            data[index] = list(map(lambda x: vocab.id_for(x), data[index]))
             processed_data.append(data[index] + [padding_word] * pad_num)
             labels.append(label[index])
             lengths.append(doc_len)
