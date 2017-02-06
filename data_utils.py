@@ -42,7 +42,7 @@ def read_tp(in_file):
     for line in file.read().splitlines():
         splt = line.split(",")
         tp_data = np.asarray(list(map(float, splt[1:])))
-        vocab[splt[0][1:-2]] = index
+        vocab[splt[0][1:-1]] = index
         index += 1
     return tp_data, vocab
 
