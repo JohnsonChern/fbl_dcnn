@@ -93,9 +93,7 @@ def mon_lingual_input():
     src_unlabel, _, src_len = preprocess_data(src_unlabel)
     tar_unlabel, _, tar_len = preprocess_data(tar_unlabel)
 
-    return src_unlabel, src_len, src_tp,
-           tar_unlabel, tar_len, tar_tp,
-           vocab
+    return src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, vocab
 
 def mul_lingual_input():
     pass
