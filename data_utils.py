@@ -82,7 +82,7 @@ def preprocess_data(data, label=None, padding_word='0'):
             labels.append(label[index])
             lengths.append(doc_len)
 
-    processed_data = np.asarray(processed_data, dtype=np.int32)
+    # processed_data = np.asarray(processed_data, dtype=np.int32)
     return processed_data, labels, lengths
 
 def mon_lingual_input():
