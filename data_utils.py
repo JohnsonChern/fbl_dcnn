@@ -78,7 +78,7 @@ def preprocess_data(data, vocab, label=None, padding_word=0):
         indexes = sorted_index[doc_len]
         pad_num = max_len - doc_len
         for index in indexes:
-            data[index] = list(map(lambda x: vocab.id_for(x), data[index]))
+            data[index] = list(map(lambda x: vocab.id_for[x], data[index]))
             processed_data.append(data[index] + [padding_word] * pad_num)
             labels.append(label[index])
             lengths.append(doc_len)
