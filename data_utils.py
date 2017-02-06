@@ -28,9 +28,23 @@ def read_excel(in_file, labeled=False):
         return docs
 
 def read_tp(in_file):
+    """
+    read a tp.csv file
+    return:
+        tp_data: list of lists
+        vocab: construct a vocabulary using the first column of tp.csv file
+    """
+    vocab = Vocab()
+    tp_data = []
     file = open(in_file, 'r')
     file.readline()
-    pass
+    index = 1
+    for line in file.read().splitlines():
+        splt = line.split(",")
+        tp_data = np.asarray(list(map(float, splt[1:])))
+        vocab[splt[0][1:-2]] = index
+        index += 1
+    return tp_data, vocab
 
 def merge_vocab(voc1, voc2):
     pass
