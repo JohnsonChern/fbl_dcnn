@@ -91,8 +91,8 @@ def mon_lingual_input():
     tar_unlabel = read_excel(TAR_UNLABEL)
     src_tp, _ = read_tp(SRC_TP)
     tar_tp, vocab = read_tp(TAR_TP)
-    src_unlabel, _, src_len = preprocess_data(src_unlabel)
-    tar_unlabel, _, tar_len = preprocess_data(tar_unlabel)
+    src_unlabel, _, src_len = preprocess_data(src_unlabel, vocab)
+    tar_unlabel, _, tar_len = preprocess_data(tar_unlabel, vocab)
 
     return src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, vocab
 
