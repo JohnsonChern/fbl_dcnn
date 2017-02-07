@@ -83,14 +83,14 @@ def preprocess_data(data, vocab, label=None, padding_word=0):
             labels.append(label[index])
             lengths.append(doc_len)
 
-    # processed_data = np.asarray(processed_data, dtype=np.int32)
+    processed_data = np.asarray(processed_data, dtype=np.int32)
     return processed_data, labels, lengths
 
-def mon_lingual_input():
-    src_unlabel = read_excel(SRC_UNLABEL)
-    tar_unlabel = read_excel(TAR_UNLABEL)
-    src_tp, _ = read_tp(SRC_TP)
-    tar_tp, vocab = read_tp(TAR_TP)
+def mon_lingual_input(src_file, src_tp_file, tar_file, tar_tp_file):
+    src_unlabel = read_excel(src_file)
+    tar_unlabel = read_excel(tar_file)
+    src_tp, _ = read_tp(src_tp_file)
+    tar_tp, vocab = read_tp(tar_tp_file)
     src_unlabel, _, src_len = preprocess_data(src_unlabel, vocab)
     tar_unlabel, _, tar_len = preprocess_data(tar_unlabel, vocab)
 
@@ -100,4 +100,5 @@ def mul_lingual_input():
     pass
 
 if __name__ == '__main__':
-    src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, vocab = mon_lingual_input()
+    src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, vocab\
+        = mon_lingual_input(SRC_UNLABEL, SRC_TP, TAR_UNLABEL, TAR_TP)
