@@ -48,7 +48,8 @@ def read_tp(in_file):
         tp_data[word] = np.asarray(list(map(float, splt[1:])))
         vocab[word] = index
         index += 1
-    return tp_data, vocab
+
+    return tp_data, vocab, vocab[word].shape[0]
 
 def merge_vocab(voc1, voc2):
     pass
@@ -89,16 +90,17 @@ def preprocess_data(data, vocab, label=None, padding_word=0):
 def mon_lingual_input(src_file, src_tp_file, tar_file, tar_tp_file):
     src_unlabel = read_excel(src_file)
     tar_unlabel = read_excel(tar_file)
-    src_tp, _ = read_tp(src_tp_file)
-    tar_tp, vocab = read_tp(tar_tp_file)
+    src_tp, _, _ = read_tp(src_tp_file)
+    tar_tp, vocab, tp_len = read_tp(tar_tp_file)
     src_unlabel, _, src_len = preprocess_data(src_unlabel, vocab)
     tar_unlabel, _, tar_len = preprocess_data(tar_unlabel, vocab)
 
-    return src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, vocab
+    return src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, tp_len, vocab
 
 def mul_lingual_input():
     pass
 
 if __name__ == '__main__':
-    src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, vocab\
+    src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, tp_len, vocab\
         = mon_lingual_input(SRC_UNLABEL, SRC_TP, TAR_UNLABEL, TAR_TP)
+    print(tp_len)
