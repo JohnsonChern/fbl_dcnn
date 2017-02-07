@@ -105,4 +105,4 @@ def mul_lingual_input():
 if __name__ == '__main__':
     src_unlabel, src_len, src_tp, tar_unlabel, tar_len, tar_tp, tp_len, vocab\
         = mon_lingual_input(SRC_UNLABEL, SRC_TP, TAR_UNLABEL, TAR_TP)
-    print(tp_len)
+    print(src_tp.keys())
