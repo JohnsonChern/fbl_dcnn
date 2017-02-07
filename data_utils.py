@@ -49,7 +49,7 @@ def read_tp(in_file):
         vocab[word] = index
         index += 1
 
-    return tp_data, vocab, vocab[word].shape[0]
+    return tp_data, vocab, tp_data[word].shape[0]
 
 def merge_vocab(voc1, voc2):
     pass
