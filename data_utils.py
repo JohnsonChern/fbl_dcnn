@@ -38,6 +38,7 @@ def read_tp(in_file):
         vocab: construct a vocabulary using the first column of tp.csv file
     """
     vocab = Vocab()
+    vocab['0'] = 0
     tp_data = {}
     file = open(in_file, 'r')
     file.readline()
@@ -45,11 +46,12 @@ def read_tp(in_file):
     for line in file.read().splitlines():
         splt = line.split(",")
         word = splt[0][1:-1]
-        tp_data[word] = np.asarray(list(map(float, splt[1:])))
+        tp_data[index] = np.asarray(list(map(float, splt[1:])))
         vocab[word] = index
         index += 1
-
-    return tp_data, vocab, tp_data[word].shape[0]
+    tp_len = tp_data[1].shape[0]
+    tp_data[0] = np.zeros(tp_len)
+    return tp_data, vocab, tp_len
 
 def merge_vocab(voc1, voc2):
     pass
